@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import InputComp from "../../../Components/Input/Input";
 import Button from "../../../Components/BotonComp/BotonComp";
 
+import Style_Login from "./Login.module.css";
+import MainTemplates from "../../Templates/MainTemplates/MainTemplates";
+
 const Login = () =>{
     const [Email, setEmail] = useState("");
     const [ Pass, setPass ] = useState("");
@@ -20,7 +23,10 @@ const Login = () =>{
     }
 
     return(
-        <>
+        <MainTemplates>
+
+        <div className={Style_Login.Contorno}>
+        <div>
         <InputComp
         name="Email"
         placeholder='Email'
@@ -28,7 +34,9 @@ const Login = () =>{
         onChange={handleChangeDat}
         value={Email}
         />
+        </div>
 
+        <div>
         <InputComp
         name="Password"
         placeholder="Password"
@@ -36,11 +44,16 @@ const Login = () =>{
         onChange={handleChangeDat2}
         value={Pass}
         />
+        </div>
 
+        <div>
         <Button 
         label="Iniciar sesion"
         disable ={Pass ===""}/>
-        </>
+        </div>
+        </div>
+    
+        </MainTemplates>
     )
 };
 
