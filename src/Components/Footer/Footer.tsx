@@ -7,12 +7,13 @@ const Footer_page = () => {
     return(
         <div className={Style_Footer.Backg_page}>
             <div>
-                <div>
-                    <div>
+
+                <div className={Style_Footer.Text_footer}>
+                    <div className={Style_Footer.Text_Thead}>
                         <div>We are coding the world of tomorrow_</div>
                     </div>
 
-                    <div>
+                    <div className={Style_Footer.Text_Tbody}>
                         <div>
                             DaCodes es una de las mejores empresas de desarrollo de software en México y LATAM. Lo que nos separa de los demás es el nivel de involucramiento que tenemos en nuestros proyectos y la pasión que tenemos por desarrollar productos digitales de calidad mundial. Somos un equipo de 220+ dacoders especializados en la planeación, diseño, desarrollo, implementación e innovación continua de productos digitales disruptivos.
                         </div>
