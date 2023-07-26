@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Backg_page{
+    width: 100%;
+    height: 283px;
+
+    background-image: url(./Footer_icons/Footer_background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: initial;
+    
+
+    position: fixed;
+    bottom: 0px;
+}
+
+.Logos_partner{
+    width: 385px;
+}
