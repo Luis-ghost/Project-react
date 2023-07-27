@@ -5,58 +5,64 @@ import Button from "../../../Components/BotonComp/BotonComp";
 import Style_Login from "./Login.module.css";
 import MainTemplates from "../../Templates/MainTemplates/MainTemplates";
 
-const Login = () =>{
+const Login = () => {
     const [Email, setEmail] = useState("");
-    const [ Pass, setPass ] = useState("");
+    const [Pass, setPass] = useState("");
 
-    const handleChangeDat = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const handleChangeDat = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
 
-    const handleChangeDat2 =(e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeDat2 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPass(e.target.value);
     }
 
-    const checkEmail = () =>{
+    const checkEmail = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return !emailRegex.test(Email);
     }
 
-    return(
+    return (
         <MainTemplates>
 
-        <div className={Style_Login.Contorno}>
-        <div>
-        <InputComp
-        name="Email"
-        placeholder='Email'
-        Type="text"
-        onChange={handleChangeDat}
-        value={Email}
-        />
-        </div>
+            <div className={Style_Login.Body_format}>
+                <div className={Style_Login.Text_prin_body}>
+                    <div className={Style_Login.Text_Prin}>Login</div>
+                    <div className={Style_Login.Text_body}>¡Bienvenido!</div>
+                </div>
 
-        <div>
-        <InputComp
-        name="Password"
-        placeholder="Password"
-        Type='password'
-        onChange={handleChangeDat2}
-        value={Pass}
-        />
-        </div>
+                <div className={Style_Login.Text_body}>
+                    <InputComp
+                        name="Correo electrónico de DaCodes"
+                        Type="text"
+                        onChange={handleChangeDat}
+                        value={Email}
+                    />
+                </div>
 
-        <div>
-        <Button 
-        label="Iniciar sesion"
-        disable ={Pass ===""}/>
-        </div>
-        </div>
-    
+                <div className={Style_Login.Text_body}>
+                    <InputComp
+                        Style="Input_movies"
+                        name="Contraseña"
+                        Type='password'
+                        onChange={handleChangeDat2}
+                        value={Pass}
+                    />
+                </div>
+
+                <div className={Style_Login.Text_body}>
+                    He leido y acepto los terminos y condiciones
+                </div>
+
+                <div>
+                    <Button
+                        label="Crear cuenta"
+                        disable={Pass === ""} />
+                </div>
+            </div>
+
         </MainTemplates>
     )
 };
-
-Login.displayName = "Login";
 
 export default Login;

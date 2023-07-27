@@ -6,6 +6,7 @@
 .Contorno{
     width: 100vw;
     height: calc(100vh - 118px);
-    padding: 65px 0px;
     background-color: #03067B;
+    padding: 85px 10px 10px 10px;
+    word-wrap: break-word;
 }

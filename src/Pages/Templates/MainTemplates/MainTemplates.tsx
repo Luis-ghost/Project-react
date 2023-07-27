@@ -4,14 +4,14 @@ import Footer from "../../../Components/Footer/Footer";
 
 import Style_MainT from "./MainTemplates.module.css";
 
-const MainTemplates = ({children}: any) =>{
-    return(
+const MainTemplates = ({ children }: any) => {
+    return (
         <>
-            <Header/>
+            <Header />
             <div className={Style_MainT.Contorno}>
                 {children}
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

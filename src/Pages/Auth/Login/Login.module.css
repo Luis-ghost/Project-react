@@ -1,8 +1,33 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins';
+    color: #FFFFFF;
 }
 
-.Contorno{
-   
+.Body_format{
+    margin-left: 78px;
+    word-wrap: break-word;
+    line-height: 25px;
+}
+
+.Text_prin_body{
+    margin-bottom: 32px;
+}
+
+.Text_Prin{
+   font-weight: 700;
+   font-size: 55px;
+   line-height: 64px;
+}
+
+.Text_body{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+
+.InputComp{
+    background-color: #5141EA;
 }

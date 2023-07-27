@@ -5,7 +5,7 @@
 
 .Backg_page{
     width: 100%;
-    height: 230px;
+    height: 220px;
     padding: 20px 45px;
 
     background-image: url(./Footer_icons/Footer_background.png);
@@ -21,7 +21,7 @@
 .Logos_partner{
     position: fixed;
     bottom: 2px;
-    width: 385px;
+    width: 355px;
 }
 
 .Text_footer{
@@ -39,10 +39,10 @@
 }
 
 .Text_Tbody{
-    width: 785px;
+    width: 820px;
     font-weight: 500;
     font-size: 13px;
-    line-height: 19px;
+    line-height: 17px;
 
     word-wrap: break-word;
 }

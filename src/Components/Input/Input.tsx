@@ -1,21 +1,25 @@
 import { Fragment, useState } from "react";
+import Style_inp from  "./Input.module.css";
 
 interface InputRec {
-    name: string;
+    Style ?: any;
+    name : string;
     Type?: string;
     namUser ?: boolean;
-    placeholder: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder ?: string;
+    onChange : (e: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
 }
 
-const InputComp =({ name, namUser, placeholder, onChange, value, Type }: InputRec)=> {
+const InputComp =({ name, namUser, placeholder, onChange, value, Type, Style }: InputRec)=> {
     if(namUser === true ) return null;
 
     return(
         <div>
-            <label>{name}</label>
+            <div className={Style_inp.Text_label}>{name}</div>
+            
             <input
+            className={Style_inp.Input_movies}
             placeholder={placeholder}
             type={Type}
             name={name}
