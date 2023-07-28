@@ -5,9 +5,11 @@ import Button from "../../../Components/BotonComp/BotonComp";
 import Style_Login from "./Login.module.css";
 import MainTemplates from "../../Templates/MainTemplates/MainTemplates";
 
+
 const Login = () => {
     const [Email, setEmail] = useState("");
     const [Pass, setPass] = useState("");
+    const [Check, setCheck] = useState(false);
 
     const handleChangeDat = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -17,11 +19,12 @@ const Login = () => {
         setPass(e.target.value);
     }
 
-    const checkEmail = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return !emailRegex.test(Email);
+    const handleChangeCheck = () => {
+        setCheck(!Check);
+
     }
 
+    console.log(Check);
     return (
         <MainTemplates>
 
@@ -51,13 +54,18 @@ const Login = () => {
                 </div>
 
                 <div className={Style_Login.Text_body}>
+                    <input
+                        type="checkbox"
+                        checked={Check}
+                        onChange={() => handleChangeCheck()} />
                     He leido y acepto los terminos y condiciones
                 </div>
 
-                <div>
+                <div className={Style_Login.Botton_Styled}>
                     <Button
                         label="Crear cuenta"
-                        disable={Pass === ""} />
+                        disable={Check === !true || Pass === "" || Email ===""}
+                    />
                 </div>
             </div>
 

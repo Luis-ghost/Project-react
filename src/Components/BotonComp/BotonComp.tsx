@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { ButtonI } from '../Types/FormsTypes';
+import StyleButt from "./BotonComp.module.css";
 
-const Button = ({ disable, label = " ", onClick }: ButtonI) =>{
+
+const Button = ({ disable, label = " ", onClick }: ButtonI) => {
+
     return (
-        <button disabled={disable} onClick={onClick}>
-        {label}
-    </button>
+        <button className={StyleButt.Botton_Styled} disabled={disable} onClick={onClick}>
+            {label}
+        </button>
     )
 };
 

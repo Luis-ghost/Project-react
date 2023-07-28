@@ -11,7 +11,9 @@ const MainTemplates = ({ children }: any) => {
             <div className={Style_MainT.Contorno}>
                 {children}
             </div>
-            <Footer />
+            <div className={Style_MainT.Footer}>
+            <Footer/>
+            </div>
         </>
     )
 }

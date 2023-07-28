@@ -3,9 +3,13 @@
     box-sizing: border-box;
 }
 
+
 .Contorno{
-    width: 100vw;
-    height: calc(100vh - 118px);
+    width: 100%;
+    min-height: calc(100vh - 155px - 65px);
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     background-color: #03067B;
     padding: 85px 10px 10px 10px;
     word-wrap: break-word;

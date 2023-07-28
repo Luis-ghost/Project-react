@@ -9,17 +9,15 @@
     padding: 20px 45px;
 
     background-image: url(./Footer_icons/Footer_background.png);
+    background-color: #03067B;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: initial;
-    
-
-    position: fixed;
     bottom: 0px;
 }
 
 .Logos_partner{
-    position: fixed;
+    
     bottom: 2px;
     width: 355px;
 }
