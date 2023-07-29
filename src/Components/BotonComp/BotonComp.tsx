@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ButtonI } from '../Types/FormsTypes';
 import StyleButt from "./BotonComp.module.css";
 

@@ -4,12 +4,18 @@ import Button from "../../../Components/BotonComp/BotonComp";
 
 import Style_Login from "./Login.module.css";
 import MainTemplates from "../../Templates/MainTemplates/MainTemplates";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const [Email, setEmail] = useState("");
     const [Pass, setPass] = useState("");
     const [Check, setCheck] = useState(false);
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    console.log('location', location);
 
     const handleChangeDat = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -21,10 +27,41 @@ const Login = () => {
 
     const handleChangeCheck = () => {
         setCheck(!Check);
-
     }
 
-    console.log(Check);
+    const handleToken = async () => {
+
+        const options = {
+            method: "GET",
+            url: "https://api.themoviedb.org/3/authentication/guest_session/new",
+            headers: {
+                accept: "application/json",
+                Authorization:
+                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OTExY2U2ZTBjNGUxZjQ4M2E3NDIxMDNjMDJmYjZmOSIsInN1YiI6IjY0MTM3ZDEyYTZjMTA0MDA3OTA3MTM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IhXW1F90EvMAP_AMkFrEfMJdyuswuVnBY6_KlyVMkO0",
+            },
+        };
+
+        axios
+            .request(options)
+            .then(function (response) {
+                console.log(response.data);
+                const Token = response.data.guest_session_id;
+                sessionStorage.setItem('token', response.data.guest_session_id);
+                setTimeout(() => {
+                    navigate("/movies/" + Email, {
+                        state: {
+                            Token,
+                            expires_at: response.data.expires_at,
+                            username: Email
+                        }
+                    })
+                },)
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    };
+
     return (
         <MainTemplates>
 
@@ -63,8 +100,9 @@ const Login = () => {
 
                 <div className={Style_Login.Botton_Styled}>
                     <Button
+                        onClick={handleToken}
                         label="Crear cuenta"
-                        disable={Check === !true || Pass === "" || Email ===""}
+                        disable={Check === !true || Pass === "" || Email === ""}
                     />
                 </div>
             </div>
