@@ -7,7 +7,7 @@ const RutasC = () =>{
         <BrowserRouter>
             <Routes>
                 <Route path="/" element = {<Login/>}/>
-                <Route path="/movies/:token/page/:page" element = {<MovieElements/>} />
+                <Route path="/movies/:token/page/:page/list/:ubiq" element = {<MovieElements/>} />
             </Routes>
         </BrowserRouter>
     )

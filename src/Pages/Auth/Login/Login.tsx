@@ -48,7 +48,7 @@ const Login = () => {
                 const Token = response.data.guest_session_id;
                 sessionStorage.setItem('token', response.data.guest_session_id);
                 setTimeout(() => {
-                    navigate("/movies/" + Token +"/page/1", {
+                    navigate("/movies/" + Token +"/page/1/list/now_playing", {
                         state: {
                             Token,
                             expires_at: response.data.expires_at,
