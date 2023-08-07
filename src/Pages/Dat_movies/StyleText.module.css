@@ -1,0 +1,51 @@
+.Body_format {
+    margin-left: 78px;
+    word-wrap: break-word;
+    line-height: 25px;
+    margin-bottom: 25px;
+}
+
+.Text_prin_body {
+    margin-bottom: 25px;
+}
+
+.Text_Prin {
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 64px;
+}
+
+.Text_body {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+
+.Carat_Titulo {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.Carat_infmovie {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.Carat_overview {
+    font-weight: 400;
+    font-size: 12.5px;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    text-align: center;
+
+    overflow: auto;
+}
+
+.Carat_Rating {
+    display: flex;
+    justify-content: center;
+
+}
