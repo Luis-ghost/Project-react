@@ -10,7 +10,7 @@ const RutasC = () =>{
                 <Route path="/" element = {<Login/>}/>
 
                 <Route element = {<PrivateRoute/>}>
-                <Route path="https://64d133677f96e016e105f48d--glowing-hotteok-d97db8.netlify.app/movies/page/:page/list/:ubiq" element = {<MovieElements/>} />
+                <Route path="/movies/page/:page/list/:ubiq" element = {<MovieElements/>} />
                 </Route>
             </Routes>
         </BrowserRouter>
