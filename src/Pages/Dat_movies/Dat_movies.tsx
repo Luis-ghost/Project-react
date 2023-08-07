@@ -146,12 +146,12 @@ const DatMovie = memo(() => {
     }
     if (UbiqLink === 'now_playing' || UbiqLink === 'upcoming') {
         if (UbiqLink === 'now_playing') {
-            if (pageAct > 74) setPageAct(74);
+            if (pageAct > 79) setPageAct(79);
             if (pageAct <= 0) setPageAct(1);
 
         }
         if (UbiqLink === 'upcoming') {
-            if (pageAct > 19) setPageAct(19);
+            if (pageAct > 27) setPageAct(27);
             if (pageAct <= 0) setPageAct(1);
         }
     }
