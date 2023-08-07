@@ -1,11 +1,12 @@
 import React, { memo, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Button from "../../Components/BotonComp/BotonComp";
 import axios from "axios";
 import StyleMovie from "./Dat_movies.module.css";
-import Button from "../../Components/BotonComp/BotonComp";
+import StyleText from "./StyleText.module.css";
+
 
 import MainTemplates from "../Templates/MainTemplates/MainTemplates";
-import not_abilite from "../../Assets/No_avalible.jpg";
 
 import StarRating from "../../Components/Star_rating/Start_rating";
 const DatMovie = memo(() => {
@@ -18,11 +19,7 @@ const DatMovie = memo(() => {
     const [maxPage, setMaxPage] = useState(1);
     const [pageAct, setPageAct] = useState(Number(param.page));
 
-
     const [activo, setActivo] = useState<number | null>(1);
-
-
-    sessionStorage.setItem('token', `${param.token}`);
 
     const genres = [
         {
@@ -103,21 +100,12 @@ const DatMovie = memo(() => {
         }
     ]
 
-
-
-
-    //const location = useLocation();
-    //console.log('location', param); //*Permite conocer donde se encuentra ubicado y que informacion recibe de su pagina anterior
-    //*console.log('Ubicacion', UbiqLink); //* Solo sirve paa conocer que boton se esta usando
-    //*console.log('paginas maximas'); //Para los parametros de la pagina
-
-
     const handleCLink = (type: string, Val: number) => {
         setUbiqLink(type);
         setPageAct(1);
         setActivo(Val);
 
-        navigate(`/movies/` + param.token + `/page/1/list/${type}`);
+        navigate(`/movies/page/1/list/${type}`);
     }
 
     const revBotonAct = () => {
@@ -188,14 +176,13 @@ const DatMovie = memo(() => {
             await axios
                 .request(options)
                 .then(function (response) {
-                    console.log('info obtenida como respuesta', response.data);
                     maxPageAvaluable(response.data.total_pages);
 
 
                     const movies = (response.data.results.map((MOVIES: any) => {
                         const idmovies = MOVIES.id;
                         const genre1 = genres.find((genre) => genre.id === MOVIES.genre_ids[0]);
-                        const genre2 = genres.find((genre) => genre.id === MOVIES.genre_ids[2]);
+                        const genre2 = genres.find((genre) => genre.id === MOVIES.genre_ids[1]);
 
                         const options2 = {
                             method: 'GET',
@@ -238,12 +225,12 @@ const DatMovie = memo(() => {
 
     const goToPrevpage = () => {
         setPageAct((pageAct) => pageAct - 1);
-        navigate(`/movies/` + param.token + `/page/${pageAct - 1}/list/${UbiqLink}`);
+        navigate(`/movies/page/${pageAct - 1}/list/${UbiqLink}`);
     }
 
     const goToNextpage = () => {
         setPageAct((pageAct) => pageAct + 1);
-        navigate(`/movies/` + param.token + `/page/${pageAct + 1}/list/${UbiqLink}`);
+        navigate(`/movies/page/${pageAct + 1}/list/${UbiqLink}`);
     }
 
     useEffect(() => {
@@ -252,7 +239,7 @@ const DatMovie = memo(() => {
 
     return (
         <MainTemplates>
-            <div>
+            <div className={StyleMovie.NavBar_Options}>
                 <Button
                     onClick={() => handleCLink("now_playing", 1)}
                     label="Now playing"
@@ -278,34 +265,48 @@ const DatMovie = memo(() => {
                 />
             </div>
 
-            <div>
-                <div>Latest</div>
-                <div>Lista de peliculas</div>
+            <div className={StyleText.Body_format}>
+                <div className={StyleText.Text_Prin}>Latest</div>
+                <div className={StyleText.Text_body}>Lista de peliculas</div>
             </div>
 
-            <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: "16px", marginLeft: "15px" }}>
+            <div className={StyleMovie.Contain_inf} >
+
                 {loading ? "Loading..." : Caratula.map((MOVIES: any) => {
                     return (
-                        <div style={{ position: "relative" }} key={MOVIES.id}>
+                        <div className={StyleMovie.Movies_Contain} key={MOVIES.id}>
                             <img
                                 src={MOVIES.image}
                                 alt={MOVIES.title}
-                                style={{ height: "auto", width: 250, borderRadius: "20px" }}
+                                className={StyleMovie.Image_Contain}
                             />
-                            <div style={{ position: "relative", opacity: 1, width: 200, height: "auto" }}>
-                                {MOVIES.original_title}
-                            </div>
 
-                            <div style={{ position: "relative", opacity: 1, width: 200, height: "auto" }}>
-                                {new Date(MOVIES.release_date).getFullYear()} . {MOVIES.genere1} / {MOVIES.genere2}
-                            </div>
+                            <div className={StyleMovie.Cont_descrip}>
 
-                            <div style={{ position: "relative", opacity: 1, width: 200, height: "auto" }}>
-                                {MOVIES.overview}
-                            </div>
+                                <div className={StyleMovie.Inf_Contain}>
+                                    <div className={StyleText.Carat_Titulo}>
+                                        {MOVIES.original_title}
+                                    </div>
+                                </div>
 
-                            <div style={{ position: "relative", opacity: 1, width: 200, height: "auto" }}>
-                                <StarRating Star= {MOVIES.rating} />
+                                <div className={StyleMovie.Inf_Contain}>
+                                    <div className={StyleText.Carat_infmovie}>
+                                        {new Date(MOVIES.release_date).getFullYear()} . {MOVIES.genere1} / {MOVIES.genere2}
+                                    </div>
+                                </div>
+
+                                <div className={StyleMovie.Inf_Contain}>
+                                    <div className={StyleText.Carat_overview}>
+                                        {MOVIES.overview}
+                                    </div>
+                                </div>
+
+                                <div className={StyleMovie.Inf_Contain}>
+                                    <div className={StyleText.Carat_Rating}>
+                                        <StarRating Star={MOVIES.rating} />
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>
@@ -313,10 +314,17 @@ const DatMovie = memo(() => {
                 })
                 }
             </div>
-            <div>
-                <button onClick={goToPrevpage} disabled={pageAct === 1}>prev</button>
+
+            <div className={StyleMovie.Navbar_Pag}>
+                <div className={StyleMovie.Butt_Cont}>
+                    <button className={StyleMovie.Butt_StyledPrev} onClick={goToPrevpage} disabled={pageAct === 1} />
+                </div>
+
                 <div>{pageAct} / {maxPage}</div>
-                <button onClick={goToNextpage} disabled={pageAct === maxPage}>next</button>
+
+                <div className={StyleMovie.Butt_Cont}>
+                    <button className={StyleMovie.Butt_StyledNext} onClick={goToNextpage} disabled={pageAct === maxPage} />
+                </div>
             </div>
 
         </MainTemplates>

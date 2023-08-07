@@ -1,11 +1,15 @@
-import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-function Private_Route(): JSX.Element {
-    const isAuthentic = true;
-    if(isAuthentic) return <Outlet />
+function PrivateRoute(): JSX.Element {
+
+    const getToken = () =>{
+        return sessionStorage.getItem('Token');
+    }
+    const token = getToken();
+
+    if(token) return <Outlet />
     return <Navigate to={"/"}/>
 }
 
-Private_Route.displayName = "RoutePrivate";
-export default Private_Route;
+PrivateRoute.displayName = "RoutePrivate";
+export default PrivateRoute;

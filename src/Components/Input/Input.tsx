@@ -25,6 +25,7 @@ const InputComp = ({ name, namUser, placeholder, onChange, value, Type, Style }:
                         name={name}
                         value={value}
                         onChange={onChange}
+                        autoComplete="off"
                     />
                 </div>
             </>

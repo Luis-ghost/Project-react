@@ -5,7 +5,7 @@ import Button from "../../../Components/BotonComp/BotonComp";
 import Style_Login from "./Login.module.css";
 import MainTemplates from "../../Templates/MainTemplates/MainTemplates";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -13,9 +13,6 @@ const Login = () => {
     const [Pass, setPass] = useState("");
     const [Check, setCheck] = useState(false);
     const navigate = useNavigate();
-
-    const location = useLocation();
-    console.log('location', location);
 
     const handleChangeDat = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -44,11 +41,10 @@ const Login = () => {
         axios
             .request(options)
             .then(function (response) {
-                console.log(response.data);
                 const Token = response.data.guest_session_id;
-                sessionStorage.setItem('token', response.data.guest_session_id);
+                sessionStorage.setItem('Token', response.data.guest_session_id);
                 setTimeout(() => {
-                    navigate("/movies/" + Token +"/page/1/list/now_playing", {
+                    navigate("/movies/page/1/list/now_playing", {
                         state: {
                             Token,
                             expires_at: response.data.expires_at,
@@ -98,7 +94,7 @@ const Login = () => {
                     He leido y acepto los terminos y condiciones
                 </div>
 
-                <div className={Style_Login.Botton_Styled}>
+                <div>
                     <Button
                         onClick={handleToken}
                         label="Crear cuenta"
