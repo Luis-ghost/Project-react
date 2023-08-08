@@ -21,7 +21,7 @@ const Login = () => {
         setCorreo(e.target.value);
         if(emailRegex.test(Correo)) {setEmail(Correo)}
         else {
-            console.log("correo no valido");
+            setEmail("");
         }
     }
 
@@ -30,7 +30,7 @@ const Login = () => {
         setPassword(e.target.value);
         if(passwordRegex.test(Password)) {setPass(Password)}
         else{
-            console.log('No valido');
+            setPass("");
         }
     }
 
@@ -110,7 +110,7 @@ const Login = () => {
                     <Button
                         onClick={handleToken}
                         label="Crear cuenta"
-                        disable={Check === !true || Pass === "" || Email === "" || Pass.length < 7}
+                        disable={Check === !true || Pass === "" || Email === "" || Password.length < 7}
                     />
                 </div>
             </div>
