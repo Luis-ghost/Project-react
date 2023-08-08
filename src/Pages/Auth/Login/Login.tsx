@@ -114,7 +114,6 @@ const Login = () => {
                     />
                 </div>
             </div>
-
         </MainTemplates>
     )
 };
