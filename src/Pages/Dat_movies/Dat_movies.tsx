@@ -18,6 +18,7 @@ const DatMovie = memo(() => {
     const [UbiqLink, setUbiqLink] = useState(param.ubiq);
     const [maxPage, setMaxPage] = useState(1);
     const [pageAct, setPageAct] = useState(Number(param.page));
+    const [TituloP, setTituloP] = useState("");
 
     const [activo, setActivo] = useState<number | null>(1);
 
@@ -111,15 +112,19 @@ const DatMovie = memo(() => {
     const revBotonAct = () => {
         if (UbiqLink === 'now_playing') {
             setActivo(1);
+            setTituloP("Now playing");
         }
         if (UbiqLink === 'upcoming') {
             setActivo(2);
+            setTituloP("Upcoming");
         }
         if (UbiqLink === 'popular') {
             setActivo(3);
+            setTituloP("Popular");
         }
         if (UbiqLink === 'top_rated') {
             setActivo(4);
+            setTituloP("Top rated");
         }
 
     }
@@ -144,17 +149,6 @@ const DatMovie = memo(() => {
         if (pageAct > 500) setPageAct(500);
         if (pageAct <= 0) setPageAct(1);
     }
-    if (UbiqLink === 'now_playing' || UbiqLink === 'upcoming') {
-        if (UbiqLink === 'now_playing') {
-            if (pageAct > 79) setPageAct(79);
-            if (pageAct <= 0) setPageAct(1);
-
-        }
-        if (UbiqLink === 'upcoming') {
-            if (pageAct > 27) setPageAct(27);
-            if (pageAct <= 0) setPageAct(1);
-        }
-    }
 
 
     const getMovies = async () => {
@@ -177,7 +171,6 @@ const DatMovie = memo(() => {
                 .request(options)
                 .then(function (response) {
                     maxPageAvaluable(response.data.total_pages);
-
 
                     const movies = (response.data.results.map((MOVIES: any) => {
                         const idmovies = MOVIES.id;
@@ -222,6 +215,7 @@ const DatMovie = memo(() => {
         }
 
     };
+    
 
     const goToPrevpage = () => {
         setPageAct((pageAct) => pageAct - 1);
@@ -231,7 +225,28 @@ const DatMovie = memo(() => {
     const goToNextpage = () => {
         setPageAct((pageAct) => pageAct + 1);
         navigate(`/movies/page/${pageAct + 1}/list/${UbiqLink}`);
+    };
+
+    const pageMax = maxPage;
+    console.log('pagina', pageMax);
+    const val=(Number(param.page));
+    console.log('pagina ingresada', val);
+
+    const prueba = () =>{
     }
+
+    if (UbiqLink === 'now_playing' || UbiqLink === 'upcoming') {
+        if (UbiqLink === 'now_playing') {
+            if (pageAct >= 500 ) setPageAct(pageMax);
+            if (pageAct <= 0) setPageAct(1);
+
+        }
+        if (UbiqLink === 'upcoming') {
+            if (pageAct >= 500) setPageAct(pageMax);
+            if (pageAct <= 0) setPageAct(1);
+        }
+    }
+
 
     useEffect(() => {
         getMovies();
@@ -266,7 +281,7 @@ const DatMovie = memo(() => {
             </div>
 
             <div className={StyleText.Body_format}>
-                <div className={StyleText.Text_Prin}>Latest</div>
+                <div className={StyleText.Text_Prin}>{TituloP}</div>
                 <div className={StyleText.Text_body}>Lista de peliculas</div>
             </div>
 

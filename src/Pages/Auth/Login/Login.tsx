@@ -10,16 +10,28 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [Email, setEmail] = useState("");
+    const [Correo, setCorreo] = useState("");
+    const [Password, setPassword] = useState("");
     const [Pass, setPass] = useState("");
     const [Check, setCheck] = useState(false);
     const navigate = useNavigate();
 
     const handleChangeDat = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        setCorreo(e.target.value);
+        if(emailRegex.test(Correo)) {setEmail(Correo)}
+        else {
+            console.log("correo no valido");
+        }
     }
 
     const handleChangeDat2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPass(e.target.value);
+        const passwordRegex = /^\S*$/;
+        setPassword(e.target.value);
+        if(passwordRegex.test(Password)) {setPass(Password)}
+        else{
+            console.log('No valido');
+        }
     }
 
     const handleChangeCheck = () => {
@@ -72,7 +84,7 @@ const Login = () => {
                         name="Correo electrónico de DaCodes"
                         Type="text"
                         onChange={handleChangeDat}
-                        value={Email}
+                        value={Correo}
                     />
                 </div>
 
@@ -82,7 +94,7 @@ const Login = () => {
                         name="Contraseña"
                         Type='password'
                         onChange={handleChangeDat2}
-                        value={Pass}
+                        value={Password}
                     />
                 </div>
 
@@ -98,7 +110,7 @@ const Login = () => {
                     <Button
                         onClick={handleToken}
                         label="Crear cuenta"
-                        disable={Check === !true || Pass === "" || Email === ""}
+                        disable={Check === !true || Pass === "" || Email === "" || Pass.length < 7}
                     />
                 </div>
             </div>
