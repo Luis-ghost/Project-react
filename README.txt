@@ -1,1 +1,1 @@
-https://app.netlify.com/sites/glowing-hotteok-d97db8/deploys/64d133677f96e016e105f48d
+https://main--glowing-hotteok-d97db8.netlify.app
